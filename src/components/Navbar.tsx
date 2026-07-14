@@ -18,9 +18,7 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Legacy", href: "#legacy" },
     { name: "Collections", href: "#collections" },
-    { name: "Craftsmanship", href: "#craftsmanship" },
     { name: "Experience", href: "#showroom" },
   ];
 

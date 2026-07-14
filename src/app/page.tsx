@@ -1,9 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { LegacySection } from "@/components/sections/LegacySection";
 import { CollectionsSection } from "@/components/sections/CollectionsSection";
-import { CraftsmanshipSection } from "@/components/sections/CraftsmanshipSection";
 import { MomentsSection } from "@/components/sections/MomentsSection";
 import { ShowroomSection } from "@/components/sections/ShowroomSection";
 
@@ -13,9 +11,7 @@ export default function Home() {
       <Navbar />
       
       <HeroSection />
-      <LegacySection />
       <CollectionsSection />
-      <CraftsmanshipSection />
       <MomentsSection />
       <ShowroomSection />
       
