@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 interface TextRevealProps {
   text: string;
@@ -12,7 +12,7 @@ export function TextReveal({ text, className, delay = 0 }: TextRevealProps) {
   // Safely split the text into an array of letters
   const letters = typeof text === "string" ? text.split("") : [];
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
@@ -20,7 +20,7 @@ export function TextReveal({ text, className, delay = 0 }: TextRevealProps) {
     }),
   };
 
-  const child = {
+  const child: Variants = {
     visible: {
       opacity: 1,
       y: 0,
