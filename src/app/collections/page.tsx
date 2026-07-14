@@ -1,17 +1,32 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
+import connectDB from "@/lib/db";
+import Product from "@/models/Product";
 
-const allCollections = [
-  { title: "Heritage Masterpieces", image: "/manasa jewellers collection/item-1.jpeg" },
-  { title: "Bridal Elegance", image: "/manasa jewellers collection/item-2.jpeg" },
-  { title: "Temple Ornaments", image: "/manasa jewellers collection/item-3.jpeg" },
-  { title: "Modern Classics", image: "/manasa jewellers collection/item-4.jpeg" },
-  { title: "Eternal Gold", image: "/manasa jewellers collection/item-5.jpeg" },
-  { title: "Signature Series", image: "/manasa jewellers collection/item-6.jpeg" }
-];
+export const dynamic = "force-dynamic";
 
-export default function CollectionsPage() {
+export default async function CollectionsPage() {
+  await connectDB();
+  
+  const productsRaw = await Product.find({}).sort({ createdAt: -1 }).lean();
+  
+  let itemsToShow = productsRaw.map(p => ({
+    _id: p._id.toString(),
+    title: p.title,
+    image: p.images && p.images.length > 0 ? p.images[0] : "/manasa jewellers collection/item-1.jpeg"
+  }));
+
+  if (itemsToShow.length === 0) {
+    itemsToShow = [
+      { _id: "1", title: "Heritage Masterpieces", image: "/manasa jewellers collection/item-1.jpeg" },
+      { _id: "2", title: "Bridal Elegance", image: "/manasa jewellers collection/item-2.jpeg" },
+      { _id: "3", title: "Temple Ornaments", image: "/manasa jewellers collection/item-3.jpeg" },
+      { _id: "4", title: "Modern Classics", image: "/manasa jewellers collection/item-4.jpeg" },
+      { _id: "5", title: "Eternal Gold", image: "/manasa jewellers collection/item-5.jpeg" },
+      { _id: "6", title: "Signature Series", image: "/manasa jewellers collection/item-6.jpeg" }
+    ];
+  }
   return (
     <main className="min-h-screen bg-[#0c0c0c] text-luxury-ivory selection:bg-luxury-gold selection:text-white">
       <Navbar />
@@ -30,13 +45,14 @@ export default function CollectionsPage() {
 
       <section className="pb-40 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {allCollections.map((item, index) => (
-            <div key={index} className="group cursor-pointer">
+          {itemsToShow.map((item, index) => (
+            <div key={item._id} className="group cursor-pointer">
               <div className="relative h-[500px] w-full overflow-hidden mb-6 bg-luxury-black">
                 <Image 
                   src={item.image} 
                   alt={item.title}
                   fill
+                  priority={index < 2}
                   className="object-cover object-center grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />

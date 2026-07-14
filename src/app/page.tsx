@@ -1,7 +1,10 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { CollectionsSection } from "@/components/sections/CollectionsSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { HorizontalGallerySection } from "@/components/sections/HorizontalGallerySection";
+import { MarqueeSection } from "@/components/sections/MarqueeSection";
+import { PuritySection } from "@/components/sections/PuritySection";
 import { MomentsSection } from "@/components/sections/MomentsSection";
 import { ShowroomSection } from "@/components/sections/ShowroomSection";
 
@@ -11,7 +14,10 @@ export default function Home() {
       <Navbar />
       
       <HeroSection />
-      <CollectionsSection />
+      <MarqueeSection />
+      <AboutSection />
+      <HorizontalGallerySection />
+      <PuritySection />
       <MomentsSection />
       <ShowroomSection />
       
@@ -20,7 +26,7 @@ export default function Home() {
         <h2 className="font-serif text-5xl md:text-7xl mb-12 max-w-5xl mx-auto leading-tight">
           Ready to begin your <span className="italic font-light text-luxury-gold">journey</span> with us?
         </h2>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
           <button className="bg-luxury-gold text-luxury-black px-10 py-5 uppercase tracking-widest text-sm hover:bg-white transition-colors duration-500 w-full sm:w-auto font-semibold">
             Visit Manasa Jewellers
           </button>

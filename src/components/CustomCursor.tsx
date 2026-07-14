@@ -7,18 +7,18 @@ export function CustomCursor() {
   const [hovered, setHovered] = useState(false);
   const [hidden, setHidden] = useState(true);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
 
-  // Smooth out the movement using spring physics
+  // Smooth out the movement using spring physics for the outer ring
   const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      mouseX.set(e.clientX - 10);
-      mouseY.set(e.clientY - 10);
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
       if (hidden) setHidden(false);
     };
 
@@ -32,7 +32,7 @@ export function CustomCursor() {
     window.addEventListener("mouseleave", handleMouseLeave);
     window.addEventListener("mouseenter", handleMouseEnter);
 
-    const interactiveElements = document.querySelectorAll("a, button, .cursor-hover");
+    const interactiveElements = document.querySelectorAll("a, button, input, select, .cursor-hover");
     interactiveElements.forEach((el) => {
       el.addEventListener("mouseenter", handleLinkHover);
       el.addEventListener("mouseleave", handleLinkLeave);
@@ -53,14 +53,27 @@ export function CustomCursor() {
     <>
       <style dangerouslySetInnerHTML={{__html: `
         @media (pointer: fine) {
-          body {
-            cursor: none;
-          }
-          a, button {
+          body, a, button, input, select {
             cursor: none;
           }
         }
       `}} />
+      
+      {/* Inner Dot */}
+      <motion.div
+        style={{
+          x: mouseX,
+          y: mouseY,
+        }}
+        animate={{
+          scale: hovered ? 0 : 1,
+        }}
+        className={`fixed top-0 left-0 w-2 h-2 -ml-1 -mt-1 bg-white rounded-full pointer-events-none z-[10000] mix-blend-difference hidden md:block transition-opacity duration-300 ${
+          hidden ? "opacity-0" : "opacity-100"
+        }`}
+      />
+      
+      {/* Outer Ring / Blob */}
       <motion.div
         style={{
           x: cursorX,
@@ -68,11 +81,10 @@ export function CustomCursor() {
         }}
         animate={{
           scale: hovered ? 3 : 1,
-          backgroundColor: hovered ? "rgba(212, 175, 55, 0.1)" : "rgba(212, 175, 55, 0.8)",
-          borderColor: hovered ? "rgba(212, 175, 55, 0.8)" : "rgba(212, 175, 55, 0)",
+          backgroundColor: hovered ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0)",
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className={`fixed top-0 left-0 w-5 h-5 rounded-full pointer-events-none z-[9999] border backdrop-blur-sm hidden md:flex items-center justify-center ${
+        className={`fixed top-0 left-0 w-8 h-8 -ml-4 -mt-4 rounded-full border border-white pointer-events-none z-[9999] mix-blend-difference hidden md:block transition-opacity duration-300 ${
           hidden ? "opacity-0" : "opacity-100"
         }`}
       />

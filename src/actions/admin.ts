@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import connectDB from "@/lib/db";
 import Product from "@/models/Product";
+import Category from "@/models/Category";
 import { redirect } from "next/navigation";
 
 export async function createProduct(formData: FormData) {
@@ -55,4 +56,37 @@ export async function deleteProduct(productId: string) {
 
   revalidatePath("/admin");
   revalidatePath("/admin/products");
+}
+
+export async function createCategory(formData: FormData) {
+  await connectDB();
+
+  const name = formData.get("name") as string;
+  const description = formData.get("description") as string;
+
+  try {
+    const category = new Category({ name, description });
+    await category.save();
+  } catch (error) {
+    console.error("Error creating category:", error);
+    throw new Error("Failed to create category");
+  }
+
+  revalidatePath("/admin/categories");
+  revalidatePath("/admin/products/new");
+  redirect("/admin/categories");
+}
+
+export async function deleteCategory(categoryId: string) {
+  await connectDB();
+  
+  try {
+    await Category.findByIdAndDelete(categoryId);
+  } catch (error) {
+    console.error("Error deleting category:", error);
+    throw new Error("Failed to delete category");
+  }
+
+  revalidatePath("/admin/categories");
+  revalidatePath("/admin/products/new");
 }

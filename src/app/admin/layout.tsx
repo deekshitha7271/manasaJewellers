@@ -11,13 +11,18 @@ import {
   Settings, 
   LogOut, 
   X,
-  ChevronRight
+  ChevronRight,
+  Sun,
+  Moon,
+  FolderTree
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import clsx from "clsx";
 
 const navItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Products", href: "/admin/products", icon: Gem },
+  { name: "Categories", href: "/admin/categories", icon: FolderTree },
   { name: "Settings", href: "/admin/settings", icon: Settings },
 ];
 
@@ -25,6 +30,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => setMounted(true), []);
 
   // Don't show admin layout on login page
   if (pathname === "/admin/login") {
@@ -128,6 +137,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           
           <div className="flex items-center space-x-4">
+            {mounted && (
+              <button 
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400 transition-colors"
+                aria-label="Toggle Theme"
+              >
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+            )}
             <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-white font-medium text-sm">
               M
             </div>

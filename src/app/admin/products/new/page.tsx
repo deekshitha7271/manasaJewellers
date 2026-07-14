@@ -2,8 +2,12 @@ import React from "react";
 import Link from "next/link";
 import { ArrowLeft, Upload, Save } from "lucide-react";
 import { createProduct } from "@/actions/admin";
+import connectDB from "@/lib/db";
+import Category from "@/models/Category";
 
-export default function NewProductPage() {
+export default async function NewProductPage() {
+  await connectDB();
+  const categories = await Category.find().sort({ name: 1 });
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex items-center space-x-4">
@@ -84,10 +88,9 @@ export default function NewProductPage() {
                   className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-transparent text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all"
                 >
                   <option value="" disabled>Select category...</option>
-                  <option value="Rings">Rings</option>
-                  <option value="Necklaces">Necklaces</option>
-                  <option value="Earrings">Earrings</option>
-                  <option value="Bracelets">Bracelets</option>
+                  {categories.map((c) => (
+                    <option key={c._id.toString()} value={c.name}>{c.name}</option>
+                  ))}
                 </select>
               </div>
             </div>

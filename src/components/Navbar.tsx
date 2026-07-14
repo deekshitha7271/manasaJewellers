@@ -18,7 +18,9 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
+    { name: "About", href: "#about" },
     { name: "Collections", href: "#collections" },
+    { name: "Trust", href: "#trust" },
     { name: "Experience", href: "#showroom" },
   ];
 
@@ -29,7 +31,7 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled ? "bg-background/80 backdrop-blur-md py-4 shadow-sm" : "bg-transparent py-6"
+          scrolled ? "bg-background/80 backdrop-blur-md py-4 shadow-sm text-foreground" : "bg-transparent py-6 text-luxury-ivory"
         }`}
       >
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
@@ -43,13 +45,13 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm uppercase tracking-widest hover:text-luxury-gold transition-colors duration-300"
+                className={`text-sm uppercase tracking-widest transition-colors duration-300 ${scrolled ? 'hover:text-luxury-gold' : 'hover:text-luxury-gold text-luxury-ivory/80 hover:text-luxury-ivory'}`}
               >
                 {link.name}
               </a>
             ))}
             <MagneticButton>
-              <a href="https://wa.me/917658998888" target="_blank" rel="noopener noreferrer" className="inline-block border border-foreground px-6 py-2 text-sm uppercase tracking-widest hover:bg-foreground hover:text-background transition-colors duration-300">
+              <a href="https://wa.me/917658998888" target="_blank" rel="noopener noreferrer" className={`inline-block border px-6 py-2 text-sm uppercase tracking-widest transition-colors duration-300 ${scrolled ? 'border-foreground hover:bg-foreground hover:text-background' : 'border-luxury-ivory/50 hover:bg-luxury-ivory hover:text-black text-luxury-ivory'}`}>
                 Book Consultation
               </a>
             </MagneticButton>
