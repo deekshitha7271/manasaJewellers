@@ -51,9 +51,9 @@ export function Navbar() {
               </a>
             ))}
             <MagneticButton>
-              <button className="border border-foreground px-6 py-2 text-sm uppercase tracking-widest hover:bg-foreground hover:text-background transition-colors duration-300">
+              <a href="https://wa.me/917658998888" target="_blank" rel="noopener noreferrer" className="inline-block border border-foreground px-6 py-2 text-sm uppercase tracking-widest hover:bg-foreground hover:text-background transition-colors duration-300">
                 Book Consultation
-              </button>
+              </a>
             </MagneticButton>
           </div>
 
@@ -86,9 +86,9 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            <button className="border border-foreground px-8 py-3 uppercase tracking-widest mt-8">
+            <a href="https://wa.me/917658998888" target="_blank" rel="noopener noreferrer" className="border border-foreground px-8 py-3 uppercase tracking-widest mt-8 text-center block">
               Book Consultation
-            </button>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

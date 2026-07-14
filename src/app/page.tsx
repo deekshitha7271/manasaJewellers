@@ -28,9 +28,9 @@ export default function Home() {
           <button className="bg-luxury-gold text-luxury-black px-10 py-5 uppercase tracking-widest text-sm hover:bg-white transition-colors duration-500 w-full sm:w-auto font-semibold">
             Visit Manasa Jewellers
           </button>
-          <button className="border border-luxury-ivory/50 text-luxury-ivory px-10 py-5 uppercase tracking-widest text-sm hover:bg-luxury-ivory hover:text-luxury-black transition-colors duration-500 w-full sm:w-auto">
+          <a href="https://wa.me/917658998888" target="_blank" rel="noopener noreferrer" className="inline-block text-center border border-luxury-ivory/50 text-luxury-ivory px-10 py-5 uppercase tracking-widest text-sm hover:bg-luxury-ivory hover:text-luxury-black transition-colors duration-500 w-full sm:w-auto">
             Book Consultation
-          </button>
+          </a>
         </div>
       </section>
 

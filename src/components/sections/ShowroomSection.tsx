@@ -93,9 +93,9 @@ export function ShowroomSection() {
               Our experts await to guide you through a curated experience of our finest collections.
             </p>
             
-            <button className="bg-luxury-gold text-luxury-black px-8 py-4 uppercase tracking-widest text-sm hover:bg-white transition-colors duration-500 w-full text-center font-semibold">
+            <a href="https://wa.me/917658998888" target="_blank" rel="noopener noreferrer" className="inline-block bg-luxury-gold text-luxury-black px-8 py-4 uppercase tracking-widest text-sm hover:bg-white transition-colors duration-500 w-full text-center font-semibold">
               Book Appointment
-            </button>
+            </a>
             
             <a 
               href="https://chat.whatsapp.com/DlPxBpUz6tb4bEtWUnz1OI"
