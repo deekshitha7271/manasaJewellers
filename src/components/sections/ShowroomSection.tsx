@@ -97,10 +97,15 @@ export function ShowroomSection() {
               Book Appointment
             </button>
             
-            <button className="border border-luxury-ivory/30 text-luxury-ivory px-8 py-4 uppercase tracking-widest text-sm hover:bg-luxury-ivory hover:text-luxury-black transition-colors duration-500 w-full text-center flex items-center justify-center gap-3">
+            <a 
+              href="https://chat.whatsapp.com/DlPxBpUz6tb4bEtWUnz1OI"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-luxury-ivory/30 text-luxury-ivory px-8 py-4 uppercase tracking-widest text-sm hover:bg-luxury-ivory hover:text-luxury-black transition-colors duration-500 w-full text-center flex items-center justify-center gap-3"
+            >
               <MessageCircle size={18} />
-              Chat on WhatsApp
-            </button>
+              Join WhatsApp Group
+            </a>
           </motion.div>
 
         </div>
