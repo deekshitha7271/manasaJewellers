@@ -31,7 +31,7 @@ export function CategoryChart({ data }: CategoryChartProps) {
             contentStyle={{ backgroundColor: '#1A1A1A', border: '1px solid #333', borderRadius: '8px', color: '#fff' }}
             itemStyle={{ color: '#f59e0b' }}
             cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-            formatter={(value: number) => [value, 'Products']}
+            formatter={(value: any) => [value, 'Products']}
           />
           <Bar dataKey="count" radius={[4, 4, 0, 0]}>
             {data.map((entry, index) => (
